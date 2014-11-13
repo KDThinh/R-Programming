@@ -1,29 +1,31 @@
 complete <-function(directory, id=1:332) {
   
-    files<-list.files(directory,full.names=TRUE)
-  
-       
-    nobs<-vector(mode="integer")
+    files<-list.files(directory,full.names=TRUE) #Create of character vector of 
+                                                # file names.
     
-    id<-vector(mode="numeric")
-  
-    for (i in id) {
+         
+    nobs<-vector(mode="numeric")    #Create an empty numeric vector to contain 
+                                    # the nobs for for loop command.
+    
+        
+    for (i in 1:length(id)) {
       
-        table<-read.csv(files[i])
+        table<-read.csv(files[id[i]]) #Read the .csv file with correct name
+                                      #according to the specified ID
         
-        sub_table<-subset(table, is.na(table$sulfate)==FALSE &&
-                                is.na(table$nitrate==FALSE))
-        
-        row_num<-nrow(sub_table)
-        
-        nobs[i]<-row_num
-        
-        id[i]<-i
+        sub_table<-table[complete.cases(table),]  #Subset data frame with removed 
+                                                  #NA
+                     
+        nobs[i]<- nrow(sub_table)   #nrow function determines the number of 
+                                    #observable value, the results is then assigned
+                                    #to vector nobs at ith position.
+                
     }
     
-    #complet<-data.frame(cbind(nobs,id))
-    #colnames(complete)<-c("nobs","id")
-    #complet
-    nobs
-  
+    result<-as.data.frame(cbind(id,nobs))   #cbind to combine the two vectors 
+                                            #id and nobs in a column wise fashion
+                                            #and is then coerced to data frame 
+                                            #otherwise, a matrix will result.
+    result
+   
 }
