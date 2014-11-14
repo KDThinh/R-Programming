@@ -23,5 +23,7 @@ corr<-function (directory, threshold=0) {
     
     complete.run<-run[complete.cases(run)] #Remove NA values from run vector
 
+    round(complete.run,digits=4)
+
     complete.run  #Return the results
 }
