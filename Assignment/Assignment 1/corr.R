@@ -21,7 +21,7 @@ corr<-function (directory, threshold=0) {
                                                       sub_table$sulfate),NA)
 }
     
-    complete.run<-run[complete.cases(run)] #Remove NA values from run vector
+    complete.run<-run[!is.na(run)] #Remove NA values from run vector
 
     round(complete.run,digits=4)
 
