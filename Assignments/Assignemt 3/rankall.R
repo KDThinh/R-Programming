@@ -1,6 +1,5 @@
 rankall <- function(outcome, num = "best") {
-  
-##Process and simplify the data  
+##Read file 
     data<-read.csv("outcome-of-care-measures.csv", stringsAsFactors=FALSE)   
     
 ##Process the outcome   
