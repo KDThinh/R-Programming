@@ -2,24 +2,21 @@ rankhospital <- function(state, outcome, num = "best") {
   
 ##Process and simplify the data  
     data<-read.csv("outcome-of-care-measures.csv", stringsAsFactors=FALSE)   
-    sub.data<-data[,c(2,7,11,17,23)]  #2 is hospital name
-                                      #7 is state
-                                      #11,17,23 are heart attack, heart failure
-                                      #and pneumonia respectively
-
+    
 ##Process the outcome   
-    if (!state %in% sub.data[,2])  stop ("invalid state") 
+    if (!state %in% data[,7])  stop ("invalid state") 
     if (!outcome %in% c("heart attack","heart failure","pneumonia")) 
         stop("invalid outcome")
-    if (outcome=="heart attack") col.num<-3
-    if (outcome=="heart failure") col.num<-4
-    if (outcome=="pneumonia") col.num<-5
+    if (outcome=="heart attack") col.num<-11
+    if (outcome=="heart failure") col.num<-17
+    if (outcome=="pneumonia") col.num<-23
 
 ##Ranking the hospitals according to the state
-    sub.data[,col.num]<-suppressWarnings(as.numeric(sub.data[,col.num]))
-    find.state<-subset(sub.data,sub.data[,2]==state)
-    find.state<-subset(find.state,!is.na(find.state[,col.num]))
-    sorted.result<-find.state[order(find.state[,col.num],find.state[,1]),]
+    data[,col.num]<-suppressWarnings(as.numeric(data[,col.num]))
+    sub.data<-subset(data[,c(2,7,col.num)])                       #Simplify data 
+    find.state<-subset(sub.data,sub.data[,2]==state)              #select state
+    find.state<-subset(find.state,!is.na(find.state[,3]))         #remove NA
+    sorted.result<-find.state[order(find.state[,3],find.state[,1]),] #sort
 
 ##If condition to process the num variable
     total<-nrow(sorted.result)
