@@ -6,7 +6,7 @@ required_files<-c("activity_labels.txt", "features.txt",
                   "test/subject_test.txt","train/subject_train.txt")
 fileUrl<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 filedest<-"./UCI HAR Dataset.zip"
-setInternet2(TRUE)  # set the R_WIN_INTERNET2 to TRUE
+setInternet2(TRUE)  # set the R_WINs_INTERNET2 to TRUE
 
 if(file.exists("./UCI HAR Dataset")) {
     checked_files<-list.files("./UCI HAR Dataset", recursive = TRUE)
@@ -26,30 +26,6 @@ if(file.exists("./UCI HAR Dataset")) {
     unzip("./UCI HAR Dataset.zip")
   }
 }
-
-#Merges the training and the test sets to create one data set-> inertial signals are 
-#not needed
-#We only need to combine the follow 6 text files (according to README.TXT):
-
-#subject_test.txt, subject_train.txt: show the values of the subjects. They are
-#named from 1 to 30. Each row identifies the subject who performed the activity 
-#for each window sample.
-
-#y_train.txt and x_test.txt: show the value of the type of activity takent.
-#They are named from 1 to 6 explained in activity_labels.txt. Each subject basically 
-#have 6  types of activities -->  the dataset would have 30 * 6 = 180 observations.
-
-#X_train.txt and X_test.txt: show the measurement data obtained from each type of 
-#activity of each subject.
-
-#=> The format of the tidy dataset would be ideallt as follow:
-#   Subjects                  Activity                Measurement data...
-#    1 (from subject)          1 (from y)            (measured data from X)
-#    1                         2                          ...
-#    .                         .                          ...
-#   ...                       ...                         ...
-#   30                         5                          ...
-#   30                         6                          ...
 
 #Read, rbind, assign the column name the subject_test.txt and subject_train.txt into 
 #subject part. Add one more column to classify whether the subject is test or train.
