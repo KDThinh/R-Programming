@@ -1,13 +1,10 @@
 ---
-title: "Cleaning and Getting Data Course Project- Readme"
-author: "KDThinh"
-date: "Sunday, May 17, 2015"
-output: html_document
+Title: "Cleaning and Getting Data Course Project- Readme"
+Author: "KDThinh"
+Date: "Sunday, May 17, 2015"
 ---
 
-* This Readme describes the steps involved in getting a tidy data set from the raw data provided by Samsung by running the Run_analysis.R script.
-
-* Before running the Run_analysis.R script, notes should be taken are:
++ This Readme describes the steps involved in getting a tidy data set from the raw data provided by Samsung by running the Run_analysis.R script.
 
 + The script was written using RStudio in Windows 7 systems. Hence, its performance will be at optimal condition provided the same working environment is being used.
 
