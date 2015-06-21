@@ -1,0 +1,8 @@
+Please download the necessary data from the following link: 
+<a href="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"> Data for Peer Assessment </a>
+
+and extracted to your current working directory
+
+run the following two codes to read the data files into R:
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
